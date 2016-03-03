@@ -1,6 +1,7 @@
 # Based on u3allio.c
 
 import sys
+import time
 from datetime import datetime
 
 import u3
@@ -11,7 +12,7 @@ longSettling = 0
 
 latestAinValues = [0] * numChannels
 
-numIterations = 1000
+numIterations = 1000000
 
 d = u3.U3()
 
@@ -57,6 +58,8 @@ try:
                 lowVoltage = True
             latestAinValues[j] = d.binaryToCalibratedAnalogVoltage(results[ 2 + j ], isLowVoltage = lowVoltage, isSingleEnded = True)
         i += 1
+    	print latestAinValues
+	time.sleep(0.01)
 
     end = datetime.now()
     delta = end - start
